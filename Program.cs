@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 WriteLine("Hello, World!");
 
-SortedDictionary<int, string> DescendentDiagonal(string input) 
+SortedDictionary<int, string> DownwardDiagonal(string input) 
 {
     List<string> lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries).ToList<string>();
     int numColumns = lines.First().Length;
@@ -17,6 +17,24 @@ SortedDictionary<int, string> DescendentDiagonal(string input)
       for (int j = 0; j < numColumns; j++) {
         if (result.ContainsKey(j-i)) result[j-i] += lines[i][j]; 
         else result.Add(j-i, lines[i][j].ToString());
+      }
+    }
+
+    return result;
+}
+
+
+SortedDictionary<int, string> UpwardDiagonal(string input) 
+{
+    List<string> lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+    int numColumns = lines.First().Length;
+    int numLines = lines.Count();
+
+    SortedDictionary<int, string> result = new();
+    for(int i = 0; i < numLines; i++) {
+      for (int j = 0; j < numColumns; j++) {
+        if (result.ContainsKey(i+j)) result[i+j] += lines[i][j]; 
+        else result.Add(i+j, lines[i][j].ToString());
       }
     }
 
@@ -37,7 +55,7 @@ string grid =
             // "clojurermt";
 
 
-var result = DescendentDiagonal(grid);
+var result = UpwardDiagonal(grid);
 
 foreach(var x in result) {
   WriteLine($"{x.Key} => {x.Value}");
