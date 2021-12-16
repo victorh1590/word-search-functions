@@ -55,6 +55,25 @@ SortedDictionary<int, string> Row(string input)
     return result;
 }
 
+SortedDictionary<int, string> Column(string input)
+{
+    List<string> lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+    SortedDictionary<int, string> result = new();
+    int numColumns = lines[0].Length;
+
+    for (int i = 0; i < numColumns; i++)
+    {
+        for (int j = 0; j < lines.Count; j++)
+        {
+            if (result.ContainsKey(i)) result[i] += lines[i][j];
+            else result.Add(i, lines[i][j].ToString());
+        }
+    }
+
+    return result;
+}
+
+
 string grid =
             "jefblpepre\n" +
             "camdcimgtc\n" +
