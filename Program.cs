@@ -61,12 +61,14 @@ SortedDictionary<int, string> Column(string input)
     SortedDictionary<int, string> result = new();
     int numColumns = lines[0].Length;
 
-    for (int i = 0; i < numColumns; i++)
+    foreach(var line in lines)
     {
-        for (int j = 0; j < lines.Count; j++)
+        int i = 0;
+        foreach(var chr in line)
         {
-            if (result.ContainsKey(i)) result[i] += lines[i][j];
-            else result.Add(i, lines[i][j].ToString());
+            if (result.ContainsKey(i)) result[i] += chr;
+            else result.Add(i, chr.ToString());
+            i++;
         }
     }
 
@@ -79,15 +81,19 @@ string grid =
             "camdcimgtc\n" +
             "oivokprjsm\n" +
             "pbwasqroua\n";
-            
-            // "rixilelhrs\n" +
-            // "screeaumgr\n" +
-            // "alxhpburyi\n" +
-            // "jalaycalmp\n" +
-            // "clojurermt";
 
-var result = UpwardDiagonal(grid);
+// "rixilelhrs\n" +
+// "screeaumgr\n" +
+// "alxhpburyi\n" +
+// "jalaycalmp\n" +
+// "clojurermt";
 
-foreach(var x in result) {
+//var result = UpwardDiagonal(grid);
+
+//var result = Row(grid);
+
+var result = Column(grid);
+
+foreach (var x in result) {
   WriteLine($"{x.Key} => {x.Value}");
 }
