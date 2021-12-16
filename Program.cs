@@ -41,6 +41,20 @@ SortedDictionary<int, string> UpwardDiagonal(string input)
     return result;
 }
 
+SortedDictionary<int, string> Row(string input)
+{
+    List<string> lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+    SortedDictionary<int, string> result = new();
+
+    for(int i = 0; i < lines.Count; i++)
+    {
+        if (result.ContainsKey(i)) result[i] = lines[i];
+        else result.Add(i, lines[i]);
+    }
+
+    return result;
+}
+
 string grid =
             "jefblpepre\n" +
             "camdcimgtc\n" +
@@ -48,12 +62,10 @@ string grid =
             "pbwasqroua\n";
             
             // "rixilelhrs\n" +
-            // "wolcqlirpc\n" +
             // "screeaumgr\n" +
             // "alxhpburyi\n" +
             // "jalaycalmp\n" +
             // "clojurermt";
-
 
 var result = UpwardDiagonal(grid);
 
